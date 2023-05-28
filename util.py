@@ -20,3 +20,4 @@ def plot_func(f,**kwargs):
     ys = f(xs)
     print(xs, ys)
     plt.plot(xs, ys, **kwargs)
+#wtf
