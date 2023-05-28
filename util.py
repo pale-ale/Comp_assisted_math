@@ -14,6 +14,8 @@ plt.rcParams.update({
     "ytick.labelsize": 'large',
 })
 
+
+
 class Plotter:
     def __init__(self, xmin=0, xmax=4, ymin=-1, ymax=5, errmin=None, errmax=None):
         self.ERRMIN = errmin if errmin is not None else [-1]
@@ -41,6 +43,12 @@ class Plotter:
         ynoise = np.fromiter((uniform(self.ERRMIN[i], self.ERRMAX[i]) for i in range(n) for _ in range (c)), float, count=c*n).reshape((n,c))
         datamatrix[1:,] += ynoise
         return datamatrix
+    
+    def measure_error(func):
+        xs = np.linspace(self.XMIN, self.XMAX, 1000)
+        func_ys = func(xs)
+        error_sum = 0
+        return sum((ys - func_ys)**2) # ToDo : we decide later where to put this information
 
     def show(self):
         plt.show()
