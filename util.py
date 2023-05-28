@@ -48,7 +48,7 @@ class Plotter:
         xs = np.linspace(self.XMIN, self.XMAX, 1000)
         func_ys = func(xs)
         error_sum = 0
-        return sum((ys - func_ys)**2) # ToDo : we decide later where to put this information..
+        return sum((ys - func_ys)**2) # ToDo : we decide later where to put this information
 
     def show(self):
         plt.show()
