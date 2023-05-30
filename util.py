@@ -15,9 +15,8 @@ plt.rcParams.update({
 })
 
 
-
 class Plotter:
-    def __init__(self, xmin=0, xmax=4, ymin=-1, ymax=5, errmin=None, errmax=None):
+    def __init__(self, xmin=0, xmax=4, ymin=0, ymax=6, errmin=None, errmax=None):
         self.ERRMIN = errmin if errmin is not None else [-1]
         self.ERRMAX = errmax if errmax is not None else [1]
         self.XMIN, self.XMAX = xmin, xmax
@@ -25,7 +24,7 @@ class Plotter:
         self.axes = plt.axes()
         self.axes.set_xlim((self.XMIN, self.XMAX))
         self.axes.set_ylim((self.YMIN, self.YMAX))
-    
+
     def plot_pts(self, xs, ys, *args, **kwargs):
         self.axes.plot(xs, ys, *args, **kwargs)
 
@@ -33,7 +32,7 @@ class Plotter:
         xs = np.linspace(self.XMIN, self.XMAX, 1000)
         self.axes.plot(xs, f(xs), *args, **kwargs)
 
-    def get_datapts(self, func, c:int, n:int, seed:int|None=None):
+    def get_datapts(self, func, c:int, n:int, seed=None):
         '''Returns an array with c columns and n rows, i.e. c points of dimension n.'''
         if isinstance(seed, int):
             set_seed(seed)
@@ -43,7 +42,7 @@ class Plotter:
         ynoise = np.fromiter((uniform(self.ERRMIN[i], self.ERRMAX[i]) for i in range(n) for _ in range (c)), float, count=c*n).reshape((n,c))
         datamatrix[1:,] += ynoise
         return datamatrix
-    
+
     def measure_error(self, func, ys):
         xs = np.linspace(self.XMIN, self.XMAX, len(ys))
         func_ys = func(xs)
@@ -54,4 +53,4 @@ class Plotter:
         plt.show()
 
     def save(self, path):
-        plt.savefig(path)
+        plt.savefig(path, format='png')
