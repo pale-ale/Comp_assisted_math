@@ -1,5 +1,7 @@
 from numpy import vstack
 from scipy.interpolate import lagrange
+from util import Plotter
+from regression import regression, trig_regression_ez, trig_regression_med
 
 POINT_COUNT = 20
 REGRESSAND_DEGREE = 3
@@ -10,7 +12,7 @@ DRAW_STEM = True
 DRAW_REGRESSION = True
 DRAW_TRIG_EZ = False
 DRAW_TRIG_MED = False
-DRAW_ERRORS = False
+DRAW_ERRORS = True
 DRAW_LAGRANGE = False
 
 def main():
@@ -36,7 +38,7 @@ def main():
         reg_func = lambda x: regression(pts, REGRESSAND_DEGREE)(x)
         plotter.measure_error(reg_func, pts[1])
 
-    plotter.save('/temp/regression/test.png')
+    plotter.save('/tmp/test.png')
     plotter.show()
 
 if __name__ == "__main__":

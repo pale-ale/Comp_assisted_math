@@ -1,4 +1,5 @@
 from sage.all import *
+import numpy as np
 
 def regression(points, dim:int=2):
     # Ax = b -> cannot be solved for x. But:
@@ -11,7 +12,7 @@ def regression(points, dim:int=2):
     # (1 x1) * (c1) = (y1) 
     # (1 x2) * (c2)   (y2)
 
-    AT = matrix([points[0]^i for i in range(dim)])
+    AT = matrix([points[0]**i for i in range(dim)])
     A = AT.transpose()
     ATA = AT * A
     coeffs = (ATA.inverse()) * AT * vector(points[1])

@@ -46,11 +46,10 @@ class Plotter:
     def measure_error(self, func, ys):
         xs = np.linspace(self.XMIN, self.XMAX, len(ys))
         func_ys = func(xs)
-        error_sum = 0
-        plt.text(0.1, 4.9, f"Regression Error: " + str(sum((ys - func_ys)**2))) # ToDo : we decide later where to put this information
+        plt.text(0.1, 4.9, f"Regression Error: " + str(sum((ys - func_ys)**2)))
 
     def show(self):
         plt.show()
 
     def save(self, path):
-        plt.savefig(path, format='png')
+        plt.savefig(path)
