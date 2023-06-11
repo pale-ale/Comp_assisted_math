@@ -1,3 +1,5 @@
 *.olean
+*.pyc
+.vscode/**
 /_target
 /leanpkg.path
